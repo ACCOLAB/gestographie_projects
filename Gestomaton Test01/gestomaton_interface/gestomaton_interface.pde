@@ -1,12 +1,15 @@
 import processing.video.*;
 int camPosX = 400;
 int camPosY = 120;
+int countdown = 30;
+int seconds, startTime;
 
 Capture cam;
 
 void setup() {
   size(1440, 900);
   background(255,255,255);
+  startTime = millis()/1000 + countdown;
   String[] cameras = Capture.list();
   
   if (cameras.length == 0) {
@@ -37,5 +40,25 @@ void draw() {
   fill(255, 0, 0);
   for(int i = 600; i<840; i+=10){
     ellipse (i, 280, 4, 4);  
+  }
+  
+  timer();
+}
+
+void timer() {
+  seconds = startTime - millis()/1000;
+  if (seconds < 0) { 
+    startTime = millis()/1000 + countdown;
+  } else {             
+    fill(255, 255, 255);
+    noStroke();
+    rect(60, 60, 60, 60);
+    fill(0, 0, 0);
+    textSize(20);
+    text(seconds, 80, 80);
+  }
+  
+  if (seconds == 0) {
+    noLoop();
   }
 }
