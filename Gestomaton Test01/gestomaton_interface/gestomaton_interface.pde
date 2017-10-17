@@ -1,6 +1,6 @@
 import processing.video.*;
-int camPosX = (1440/2)-(640/2);
-int camPosY = (900/3)-(360/2);
+int camPosX = 400;
+int camPosY = 120;
 
 Capture cam;
 
@@ -21,6 +21,7 @@ void setup() {
     cam = new Capture(this, cameras[0]);
     cam.start();
   }
+  smooth();
 }
 
 void draw() {
@@ -30,10 +31,11 @@ void draw() {
   image(cam, camPosX, camPosY, 640, 360);
   noFill();
   stroke(255, 0, 0);
-  strokeWeight(15);
-  ellipse(width/2, height/3, 250, 300);
-  
-  // The following does the same, and is faster when just drawing the image
-  // without any additional resizing, transformations, or tint.
-  //set(0, 0, cam);
+  strokeWeight(10);
+  ellipse(width/2, 300, 200, 280);
+  noStroke();
+  fill(255, 0, 0);
+  for(int i = 600; i<840; i+=10){
+    ellipse (i, 280, 4, 4);  
+  }
 }
