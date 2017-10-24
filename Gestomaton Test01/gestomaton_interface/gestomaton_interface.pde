@@ -30,6 +30,16 @@ void setup() {
 }
 
 void draw() {
+  s2();
+}
+
+void s2() {
+  s2webcam();
+  s2timer();
+  s2message();
+}
+
+void s2webcam() {
   if (cam.available() == true) {
     cam.read();
   }
@@ -43,12 +53,9 @@ void draw() {
   for(int i = 600; i<840; i+=10){
     ellipse (i, 280, 4, 4);  
   }
-  
-  timer();
-  sc2message();
 }
 
-void timer() {
+void s2timer() {
   seconds = startTime - millis()/1000;
   if (seconds < 0) { 
     startTime = millis()/1000 + countdown;
@@ -65,7 +72,7 @@ void timer() {
   } 
 }
 
-void sc2message() {
+void s2message() {
   text("La photo va être prise dans " + seconds + " secondes", 80, 80);
   text(txtSc2line1, 270, 560);
   text(txtSc2line2, 270, 590);
