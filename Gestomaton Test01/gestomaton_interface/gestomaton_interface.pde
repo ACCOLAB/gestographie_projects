@@ -3,6 +3,8 @@ int camPosX = 400;
 int camPosY = 120;
 int countdown = 30;
 int seconds, startTime;
+String txtSc2line1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
+String txtSc2line2 = "Quand vous êtes prêt, vous pouvez appuyer sur [OK]";
 
 Capture cam;
 
@@ -43,6 +45,7 @@ void draw() {
   }
   
   timer();
+  sc2message();
 }
 
 void timer() {
@@ -52,13 +55,19 @@ void timer() {
   } else {             
     fill(255, 255, 255);
     noStroke();
-    rect(60, 60, 60, 60);
+    rect(60, 60, 500, 60);
     fill(0, 0, 0);
     textSize(20);
-    text(seconds, 80, 80);
   }
   
   if (seconds == 0) {
     noLoop();
-  }
+  } 
+}
+
+void sc2message() {
+  text("La photo va être prise dans " + seconds + " secondes", 80, 80);
+  text(txtSc2line1, 270, 560);
+  text(txtSc2line2, 270, 590);
+  noLoop();
 }
