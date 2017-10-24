@@ -4,9 +4,14 @@ int camPosX = 400;
 int camPosY = 120;
 int countdown = 30;
 int seconds, startTime;
-String s1msg = "Pour démarrez, appuyer sur [OK]";
+boolean startTimer = false;
+String s1msg = "Pour démarrez, appuyer sur [A]";
 String s2msgl1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
-String s2msgl2 = "Quand vous êtes prêt, vous pouvez appuyer sur [OK]";
+String s2msgl2 = "Si vous êtes prêt, vous pouvez appuyer sur [OK]";
+
+String time = "60";
+int t;
+int interval = 60;
 
 Capture cam;
 
@@ -38,6 +43,7 @@ void draw() {
     s1();
   }
   if(screen == 1) {
+    startTimer = true;
     s2();
   }
 }
@@ -56,7 +62,7 @@ void s1() {
 void s2timer() {
   startTime = millis()/1000 + countdown;
   seconds = startTime - millis()/1000;
-  if (seconds < 0) { 
+  if ((seconds < 0) && (startTimer = true)) { 
     startTime = millis()/1000 + countdown;
   } else {             
     fill(255, 255, 255);
@@ -66,15 +72,15 @@ void s2timer() {
     textSize(20);
     text("La photo va être prise dans " + seconds + " secondes", 80, 80);
   }
-  if (seconds == 0) {
-    noLoop();
-  } 
 }
 
-void s2message() {
-  fill(0, 0, 0);
-  text(s2msgl1, 270, 560);
-  text(s2msgl2, 270, 590);
+void s2timer2() {
+    t = interval-int(millis()/1000);
+    time = nf(t , 2);
+    if(t == 0) {
+      interval+=10;
+    }
+    text("La photo va être prise dans " + time + " secondes", 80, 80);
 }
 
 void s2webcam() {
@@ -93,7 +99,16 @@ void s2webcam() {
   }
 }
 
+void s2message() {
+  fill(0, 0, 0);
+  text(s2msgl1, 270, 560);
+  text(s2msgl2, 270, 590);
+}
+
 void s2() {
+  if (startTimer = true) {
+    s2timer2();
+  }
   s2webcam();
   s2message();
 }
