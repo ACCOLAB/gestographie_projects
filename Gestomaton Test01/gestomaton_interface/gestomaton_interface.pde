@@ -1,4 +1,6 @@
 import processing.video.*;
+import processing.sound.*;
+
 int screen = 0;
 int camPosX = 400;
 int camPosY = 120;
@@ -6,12 +8,15 @@ int countdown = 30;
 int seconds, startTime;
 boolean startTimer = false;
 String s1msg = "Pour démarrez, appuyer sur [A]";
-String s2msgl1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
-String s2msgl2 = "Si vous êtes prêt, vous pouvez appuyer sur [OK]";
+String s2msg1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
+String s2msg2 = "Si vous êtes prêt, vous pouvez appuyer sur [OK]";
+String s3msg = "Votre photo est prise ! Vous pouvez aller la récupérer à l'extérieur du gestomaton";
 
 String time = "60";
 int t;
 int interval = 60;
+
+SoundFile photoTake;
 
 Capture cam;
 
@@ -28,10 +33,10 @@ void setup() {
     for (int i = 0; i < cameras.length; i++) {
       println(cameras[i]);
     }
-  
     cam = new Capture(this, cameras[0]);
     cam.start();
   }
+  
   smooth();
 }
 
@@ -43,14 +48,19 @@ void draw() {
     s1();
   }
   if(screen == 1) {
-    startTimer = true;
     s2();
+  }
+  if(screen == 2) {
+    s3();
   }
 }
  
 void keyPressed() {
   if (key == 'a') {
-    screen = min(screen + 1, 1);
+    screen = min(screen + 1, 2);
+  }
+  if (key == 'z') {
+    screen = min(screen + 1, 2);
   }
 }
 
@@ -101,14 +111,29 @@ void s2webcam() {
 
 void s2message() {
   fill(0, 0, 0);
-  text(s2msgl1, 270, 560);
-  text(s2msgl2, 270, 590);
+  text(s2msg1, 270, 560);
+  text(s2msg2, 270, 590);
 }
 
 void s2() {
-  if (startTimer = true) {
-    s2timer2();
-  }
   s2webcam();
   s2message();
+}
+
+void s3() {
+  // Image capture
+  if (cam.available() == true) {
+    cam.stop();
+  }
+  image(cam, camPosX, camPosY, 640, 360);
+  noFill();
+  
+  // Camera sound
+  photoTake = new SoundFile(this, "camera.mp3");
+  photoTake.play();
+  noLoop();
+  
+  // Message
+  fill(0, 0, 0);
+  text(s3msg, 270, 560);
 }
