@@ -93,7 +93,8 @@ void s2timer2() {
     text("La photo va être prise dans " + time + " secondes", 80, 80);
 }
 
-void s2webcam() {
+void s2() {
+  // Image capture
   if (cam.available() == true) {
     cam.read();
   }
@@ -107,17 +108,11 @@ void s2webcam() {
   for(int i = 600; i<840; i+=10){
     ellipse (i, 280, 4, 4);  
   }
-}
-
-void s2message() {
+  
+  // Message
   fill(0, 0, 0);
   text(s2msg1, 270, 560);
   text(s2msg2, 270, 590);
-}
-
-void s2() {
-  s2webcam();
-  s2message();
 }
 
 void s3() {
