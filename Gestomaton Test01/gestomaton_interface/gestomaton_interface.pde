@@ -1,5 +1,6 @@
 import processing.video.*;
 import processing.sound.*;
+//Valentin the best
 
 int screen = 0;
 int camPosX = 400;
