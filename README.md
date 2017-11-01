@@ -1,5 +1,6 @@
 # Gestographie
 All codes for MuséoCamp project
 
--[ ] to do
--[x] done
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
