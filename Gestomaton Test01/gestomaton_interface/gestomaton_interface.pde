@@ -9,7 +9,7 @@ int seconds, startTime;
 boolean startTimer = false;
 String s1msg = "Pour démarrez, appuyer sur [A]";
 String s2msg1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
-String s2msg2 = "Si vous êtes prêt, vous pouvez appuyer sur [OK]";
+String s2msg2 = "Si vous êtes prêt, vous pouvez appuyer sur [Z]";
 String s3msg = "Votre photo est prise ! Vous pouvez aller la récupérer à l'extérieur du gestomaton";
 
 String time = "60";
