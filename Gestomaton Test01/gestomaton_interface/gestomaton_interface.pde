@@ -99,7 +99,11 @@ void s2() {
   if (cam.available() == true) {
     cam.read();
   }
-  image(cam, camPosX, camPosY, 640, 360);
+  pushMatrix();
+  scale(-1, 1);
+  //image(cam, camPosX, camPosY, 640, 360);
+  image(cam, -cam.width-400, camPosY, 640, 360);
+  popMatrix();
   noFill();
   stroke(255, 0, 0);
   strokeWeight(10);
@@ -121,7 +125,11 @@ void s3() {
   if (cam.available() == true) {
     cam.stop();
   }
-  image(cam, camPosX, camPosY, 640, 360);
+  pushMatrix();
+  scale(-1, 1);
+  //image(cam, camPosX, camPosY, 640, 360);
+  image(cam, -cam.width-400, camPosY, 640, 360);
+  popMatrix();
   noFill();
   
   // Camera sound
