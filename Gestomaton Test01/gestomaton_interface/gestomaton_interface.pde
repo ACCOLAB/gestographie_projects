@@ -3,7 +3,7 @@ import processing.sound.*;
 //Valentin the best
 
 int screen = 0;
-int camPosX = 400;
+int camPosX = -(1440/2+640/2);
 int camPosY = 120;
 int countdown = 30;
 int seconds, startTime;
@@ -101,8 +101,7 @@ void s2() {
   }
   pushMatrix();
   scale(-1, 1);
-  //image(cam, camPosX, camPosY, 640, 360);
-  image(cam, -cam.width-400, camPosY, 640, 360);
+  image(cam, camPosX, camPosY, 640, 360);
   popMatrix();
   noFill();
   stroke(255, 0, 0);
@@ -127,8 +126,7 @@ void s3() {
   }
   pushMatrix();
   scale(-1, 1);
-  //image(cam, camPosX, camPosY, 640, 360);
-  image(cam, -cam.width-400, camPosY, 640, 360);
+  image(cam, camPosX, camPosY, 640, 360);
   popMatrix();
   noFill();
   
