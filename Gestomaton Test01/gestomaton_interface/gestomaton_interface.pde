@@ -2,24 +2,27 @@ import processing.video.*;
 import processing.sound.*;
 //Valentin the best
 
+//Camera
 int screen = 0;
 int camPosX = -(1440/2+640/2);
 int camPosY = 120;
-int countdown = 30;
-int seconds, startTime;
-boolean startTimer = false;
+Capture cam;
+
+//Audio
+SoundFile photoTake;
+
+//Message
 String s1msg = "Pour démarrez, appuyer sur [A]";
 String s2msg1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
 String s2msg2 = "Si vous êtes prêt, vous pouvez appuyer sur [Z]";
+String s2msg3;
 String s3msg = "Votre photo est prise ! Vous pouvez aller la récupérer à l'extérieur du gestomaton";
 
-String time = "60";
-int t;
-int interval = 60;
+//Timer
+boolean timerOver = false;
+int timer;
+int timerCurrent = 10;
 
-SoundFile photoTake;
-
-Capture cam;
 
 void setup() {
   size(1440, 900);
@@ -49,9 +52,10 @@ void draw() {
     s1();
   }
   if(screen == 1) {
+    timer();
     s2();
   }
-  if(screen == 2) {
+  if((timerOver) || (screen == 2)) {
     s3();
   }
 }
@@ -70,31 +74,9 @@ void s1() {
   text(s1msg, 270, 560);
 }
 
-void s2timer() {
-  startTime = millis()/1000 + countdown;
-  seconds = startTime - millis()/1000;
-  if ((seconds < 0) && (startTimer = true)) { 
-    startTime = millis()/1000 + countdown;
-  } else {             
-    fill(255, 255, 255);
-    noStroke();
-    rect(60, 60, 500, 60);
-    fill(0, 0, 0);
-    textSize(20);
-    text("La photo va être prise dans " + seconds + " secondes", 80, 80);
-  }
-}
-
-void s2timer2() {
-    t = interval-int(millis()/1000);
-    time = nf(t , 2);
-    if(t == 0) {
-      interval+=10;
-    }
-    text("La photo va être prise dans " + time + " secondes", 80, 80);
-}
-
 void s2() {
+  background(255);
+  
   // Image capture
   if (cam.available() == true) {
     cam.read();
@@ -117,9 +99,24 @@ void s2() {
   fill(0, 0, 0);
   text(s2msg1, 270, 560);
   text(s2msg2, 270, 590);
+  text(s2msg3, 270, 50);
+}
+
+void timer() {
+  if ((millis() - timer >= 1000)) {
+    timerCurrent = timerCurrent - 1;
+    println(timerCurrent);
+    s2msg3 = "La photo sera prise dans "+ timerCurrent +" secondes";
+    if (timerCurrent == 0) {
+      timerOver = true;
+    }
+    timer = millis();
+  }
 }
 
 void s3() {
+  background(255);
+  
   // Image capture
   if (cam.available() == true) {
     cam.stop();
