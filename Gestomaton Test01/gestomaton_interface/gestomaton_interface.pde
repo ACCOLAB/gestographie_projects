@@ -1,36 +1,37 @@
 import processing.video.*;
 import processing.sound.*;
-//Valentin the best
 
-//Camera
+// Camera
 int screen = 0;
 int camPosX = -(1440/2+640/2);
 int camPosY = 120;
 Capture cam;
 
-//Audio
+// Audio
 SoundFile photoTake;
 
-//Message
+// Message
 String s1msg = "Pour commencer, appuyer sur";
 String s2msg1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
-String s2msg2 = "Si vous êtes prêt, vous pouvez appuyer sur [Z]";
-String s2msg3;
-String s3msg = "Votre photo est prise ! Vous pouvez aller la récupérer à l'extérieur du gestomaton";
+String s2msg2;
+String s2msg3 = "Si vous êtes prêt, vous pouvez appuyer sur";
+String s3msg1 = "Votre photo est prise !";
+String s3msg2 = "Vous pouvez aller la récupérer à l'extérieur du Gestomaton";
 
-//Timer
+// Timer
 boolean timerOver = false;
 int timer;
-int timerCurrent = 10;
+int timerCurrent = 60;
 
-//Font
+// Font
 PFont font;
 
 
 void setup() {
   size(1440, 900);
-  background(255,255,255);
+  background(255);
   
+  // Setting the webcam
   String[] cameras = Capture.list();
   if (cameras.length == 0) {
     println("There are no cameras available for capture.");
@@ -44,7 +45,7 @@ void setup() {
     cam.start();
   }
   
-  //Setting font
+  // Setting font
   font = createFont("OpenSans-Regular.ttf", 32);
   
   smooth();
@@ -76,15 +77,16 @@ void keyPressed() {
 }
 
 void s1() {
+  // Message
   background(255);
   fill(0);
   textFont(font, 45);
   text(s1msg, 325, 430);
   
+  // OK button
   fill(242,0,35);
   noStroke();
   rect(988, 375, 126, 84);
-  
   fill(255);
   textFont(font, 40);
   text("OK", 1017, 430);
@@ -112,17 +114,35 @@ void s2() {
   }
   
   // Message
-  fill(0, 0, 0);
-  text(s2msg1, 270, 560);
-  text(s2msg2, 270, 590);
-  text(s2msg3, 270, 50);
+  fill(0);
+  textFont(font, 37);
+  text(s2msg1, 180, 577);
+  text(s2msg2, 195, 672);
+  text(s2msg3, 297, 730);
+  
+  // OK button
+  fill(37,177,239);
+  noStroke();
+  rect(1048, 690, 94, 63);
+  fill(255);
+  textFont(font, 33);
+  text("OK", 1070, 731);
+  
+  // Image cropping
+  fill(255);
+  noStroke();
+  rect(400, 120, 180, 360);
+  rect(860, 120, 180, 360);
 }
 
 void timer() {
   if ((millis() - timer >= 1000)) {
     timerCurrent = timerCurrent - 1;
-    println(timerCurrent);
-    s2msg3 = "La photo sera prise dans "+ timerCurrent +" secondes";
+    
+    fill(0);
+    textFont(font, 37);
+    s2msg2 = "Si vous ne faites rien, votre photo sera prise dans "+ timerCurrent +" secondes";
+    
     if (timerCurrent == 0) {
       timerOver = true;
     }
@@ -150,5 +170,13 @@ void s3() {
   
   // Message
   fill(0, 0, 0);
-  text(s3msg, 270, 560);
+  textFont(font, 37);
+  text(s3msg1, 512, 576);
+  text(s3msg2, 260, 633);
+  
+  // Image cropping
+  fill(255);
+  noStroke();
+  rect(400, 120, 180, 360);
+  rect(860, 120, 180, 360);
 }
