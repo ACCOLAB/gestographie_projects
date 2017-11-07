@@ -8,9 +8,9 @@ video{
 }
 
 .container{
-    width: 110px;
+    width: 98.4px;
     height: 135px;
-    display:inline-block;
+    display:inline-flex;
     overflow:hidden;
     margin: -2px;
 }
