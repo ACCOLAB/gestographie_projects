@@ -28,6 +28,6 @@ void draw() {
   rect(800, 375, 126, 84);
   
   fill(255);
-  textFont(font, 32);
-  text("OK", 835, 430);
+  textFont(font, 40);
+  text("OK", 832, 430);
 }
