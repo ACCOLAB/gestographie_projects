@@ -9,19 +9,22 @@ Capture cam;
 
 // Audio
 SoundFile photoTake;
+SoundFile feedback;
+boolean feedback1Playing = false;
+boolean feedback2Playing = false;
+boolean photoTakePlaying = false;
 
 // Message
 String s1msg = "Pour commencer, appuyer sur";
 String s2msg1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
 String s2msg2;
-String s2msg3 = "Si vous êtes prêt, vous pouvez appuyer sur";
 String s3msg1 = "Votre photo est prise !";
-String s3msg2 = "Vous pouvez aller la récupérer à l'extérieur du Gestomaton";
+String s3msg2 = "Vous pouvez aller la récupérer à l'extérieur du photomaton";
 
-// Timer
-boolean timerOver = false;
-int timer;
-int timerCurrent = 60;
+// timer Screen 2
+boolean timerSc2Over = false;
+int timerSc2;
+int timerSc2Current = 26;
 
 // Font
 PFont font;
@@ -48,6 +51,8 @@ void setup() {
   // Setting font
   font = createFont("OpenSans-Regular.ttf", 32);
   
+  photoTake = new SoundFile(this, "camera.mp3");
+  feedback = new SoundFile(this, "feedback.mp3");
   smooth();
 }
 
@@ -59,20 +64,20 @@ void draw() {
     s1();
   }
   if(screen == 1) {
-    timer();
+    timer2();
     s2();
   }
-  if((timerOver) || (screen == 2)) {
+  if(screen == 2) {
     s3();
   }
 }
  
 void keyPressed() {
-  if (key == 'a') {
+  if(key == ' ') {
     screen = min(screen + 1, 2);
   }
-  if (key == 'z') {
-    screen = min(screen + 1, 2);
+  if(key == 'a'){
+    screen = 0;
   }
 }
 
@@ -113,41 +118,23 @@ void s2() {
     ellipse (i, 280, 4, 4);  
   }
   
-  // Message
-  fill(0);
-  textFont(font, 37);
-  text(s2msg1, 180, 577);
-  text(s2msg2, 195, 672);
-  text(s2msg3, 297, 730);
-  
-  // OK button
-  fill(37,177,239);
-  noStroke();
-  rect(1048, 690, 94, 63);
-  fill(255);
-  textFont(font, 33);
-  text("OK", 1070, 731);
+  // Camera sound
+  if (!feedback1Playing) {
+    feedback.play();
+    feedback1Playing = true;
+  }
   
   // Image cropping
   fill(255);
   noStroke();
   rect(400, 120, 180, 360);
   rect(860, 120, 180, 360);
-}
-
-void timer() {
-  if ((millis() - timer >= 1000)) {
-    timerCurrent = timerCurrent - 1;
-    
-    fill(0);
-    textFont(font, 37);
-    s2msg2 = "Si vous ne faites rien, votre photo sera prise dans "+ timerCurrent +" secondes";
-    
-    if (timerCurrent == 0) {
-      timerOver = true;
-    }
-    timer = millis();
-  }
+  
+  // Messages
+  fill(0);
+  textFont(font, 37);
+  text(s2msg1, 180, 577);
+  text(s2msg2, 297, 672);
 }
 
 void s3() {
@@ -164,19 +151,41 @@ void s3() {
   noFill();
   
   // Camera sound
-  photoTake = new SoundFile(this, "camera.mp3");
-  photoTake.play();
-  noLoop();
-  
-  // Message
-  fill(0, 0, 0);
-  textFont(font, 37);
-  text(s3msg1, 512, 576);
-  text(s3msg2, 260, 633);
+  if (!photoTakePlaying) {
+    photoTake.play();
+    photoTakePlaying = true;
+  }
   
   // Image cropping
   fill(255);
   noStroke();
   rect(400, 120, 180, 360);
   rect(860, 120, 180, 360);
+  
+  // Message Please wait
+  fill(0, 0, 0);
+  textFont(font, 37);
+  text(s3msg1, 512, 618);
+  text(s3msg2, 258, 675);
+}
+
+void timer2() {
+  if ((millis() - timerSc2 >= 1000)) {
+    timerSc2Current = timerSc2Current - 1;
+    
+    fill(0);
+    textFont(font, 37);
+    s2msg2 = "Il reste "+ timerSc2Current +" secondes avant la prise de votre photo";
+    
+    if (timerSc2Current == 0) {
+      screen = min(screen + 1, 2);
+    }
+    timerSc2 = millis();
+    
+    // Camera sound
+    if ((timerSc2Current == 5) && (!feedback2Playing)) {
+      feedback.play();
+      feedback2Playing = true;
+    }
+  }
 }
