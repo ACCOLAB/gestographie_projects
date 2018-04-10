@@ -1,13 +1,13 @@
 var http = require('http');
-console.log("Serveur Lancé");
 
+var server = http.createServer();
 
-var server = http.createServer(function(req, res) {
-
-  res.writeHead(200);
-  res.end('Salut tout le monde !');
-
-});
+server.on('request',function(request, response){
+	console.log("il y a eu une requête");
+	response.writeHead(200,{
+		'Content-type': 'text/html; charset=utf-8'
+	});
+	response.end('<h1>salut, comment ça va ?</h1>');
+})
 
 server.listen(8080);
-
