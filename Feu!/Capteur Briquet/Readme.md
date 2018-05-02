@@ -27,5 +27,6 @@ OSC,
 Websocket (utilisé dans le projet Totem)
 
 # Comment intégrer l'arduino dans le briquet
-
+**ATTENTION !** 
+À l'étape de découpe du briquet, faire attention. Si le briquet n'est pas entiérement vide, la découpe du boitier entraine une petite explosion de gaz sous pression. 
 ![](https://github.com/ACCOLAB/Gestographie/blob/master/Feu!/Capteur%20Briquet/Archives_Images/Briquet%20Coupe.jpg)
