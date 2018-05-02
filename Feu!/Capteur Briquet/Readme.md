@@ -1,9 +1,17 @@
-L'idée du projet est de créer un capteur de type bouton à insérer au coeur d'un briquet. Le bouton est relayé à un arduino ESP8266-01.
+# Le projet
 
-Un serveur central Node.js permet de faire le lien entre, d'un côté le déclencheur (arduino esp8266-01) et le lecteur vidéo (géré par processing et resolume)
+L'idÃ©e du projet est de crÃ©er un capteur de type bouton Ã  insÃ©rer au coeur d'un briquet. Le bouton est relayÃ© Ã  un arduino ESP8266-01 qui permet d'envoyer par rÃ©seau l'Ã©vÃ©nement "le bouton a Ã©tÃ© appuryÃ©".
 
-Piste à explorer pour la communication réseau :
+# Communication RÃ©seau
+
+Un serveur central Node.js permet de faire le lien entre, d'un cÃ´tÃ© le dÃ©clencheur (arduino esp8266-01) et le lecteur vidÃ©o (gÃ©rÃ© par processing et resolume)
+
+Piste Ã  explorer pour la communication rÃ©seau :
 
 OSC,
 
-Websocket (utilisé dans le projet Totem)
+Websocket (utilisÃ© dans le projet Totem)
+
+# Comment intÃ©grer l'arduino dans le briquet
+
+![](https://github.com/ACCOLAB/Gestographie/blob/master/Feu!/Capteur%20Briquet/Archives_Images/Briquet%20Coupe.jpg)
