@@ -33,4 +33,5 @@ Websocket (utilisé dans le projet Totem)
 
 **Modèle 3D**
 Le lien après est un lien vers le modèle 3D du boitier de briquet à imprimer. Sur Onshape, il peut être modifiable directement sur le logiciel.
+
 https://cad.onshape.com/documents/e3a519272aa943a477717af4/w/0d420bd723d1671b3431d051/e/b1c039a791d6e8db9fc0c773
