@@ -12,6 +12,10 @@ Un **adaptateur USB**
 
 https://www.amazon.fr/gp/product/B077Z4L8DD/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1
 
+L'ensemble étant assemblé de cette manière
+
+![](https://i.pinimg.com/originals/ce/3e/0b/ce3e0ba31f28c2d312614c087a0d944b.jpg)
+
 # Communication Réseau
 
 Un serveur central Node.js permet de faire le lien entre, d'un côté le déclencheur (arduino esp8266-01) et le lecteur vidéo (géré par processing et resolume)
