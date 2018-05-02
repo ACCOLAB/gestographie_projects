@@ -30,3 +30,6 @@ Websocket (utilisé dans le projet Totem)
 **ATTENTION !** 
 À l'étape de découpe du briquet, faire attention. Si le briquet n'est pas entiérement vide, la découpe du boitier entraine une petite explosion de gaz sous pression. 
 ![](https://github.com/ACCOLAB/Gestographie/blob/master/Feu!/Capteur%20Briquet/Archives_Images/Briquet%20Coupe.jpg)
+
+**Modèle 3D**
+https://cad.onshape.com/documents/e3a519272aa943a477717af4/w/0d420bd723d1671b3431d051/e/b1c039a791d6e8db9fc0c773
