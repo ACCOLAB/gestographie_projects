@@ -12,6 +12,9 @@ Hardware required :
 - 10k ohm resistor
 - Wires
 
+## Arduino to Processing
+
+Connect and send the right code to the Arduino board. Then, open and run the Processing sketch. That’s all ! 
 
 ## Processing to Resolume
 
