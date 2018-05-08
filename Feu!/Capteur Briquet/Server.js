@@ -7,7 +7,7 @@ server.on('request',function(request, response){
 	response.writeHead(200,{
 		'Content-type': 'text/html; charset=utf-8'
 	});
-	response.end('<h1>salut, comment ça va ?</h1>');
+	response.end('<h1>ok</h1>');
 })
 
 server.listen(8080);
