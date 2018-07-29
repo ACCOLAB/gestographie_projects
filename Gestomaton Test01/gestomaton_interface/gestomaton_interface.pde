@@ -32,6 +32,7 @@ PFont font;
 
 void setup() {
   size(1440, 900);
+  //fullScreen();
   background(255);
   
   // Setting the webcam
