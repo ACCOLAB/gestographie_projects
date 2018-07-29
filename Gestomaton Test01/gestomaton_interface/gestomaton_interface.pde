@@ -15,7 +15,7 @@ boolean feedback2Playing = false;
 boolean photoTakePlaying = false;
 
 // Message
-String s1msg = "Pour commencer, appuyer sur";
+String s1msg = "Pour commencer, appuyer sur le bouton rouge";
 String s2msg1 = "Réglez votre siège de sorte à placer votre visage dans le repère";
 String s2msg2;
 String s3msg1 = "Votre photo est prise !";
@@ -24,7 +24,7 @@ String s3msg2 = "Vous pouvez aller la récupérer à l'extérieur du photomaton"
 // timer Screen 2
 boolean timerSc2Over = false;
 int timerSc2;
-int timerSc2Current = 26;
+int timerSc2Current = 30;
 
 // Font
 PFont font;
@@ -73,8 +73,8 @@ void draw() {
 }
  
 void keyPressed() {
-  if(key == ' ') {
-    screen = min(screen + 1, 2);
+  if(key == '0') {
+    screen = 1;
   }
   if(key == 'a'){
     screen = 0;
@@ -86,15 +86,15 @@ void s1() {
   background(255);
   fill(0);
   textFont(font, 45);
-  text(s1msg, 325, 430);
+  text(s1msg, 200, 430);
   
   // OK button
   fill(242,0,35);
   noStroke();
-  rect(988, 375, 126, 84);
-  fill(255);
-  textFont(font, 40);
-  text("OK", 1017, 430);
+  rect(width/2, 500, 126, 84);
+  //fill(255);
+  //textFont(font, 40);
+  //text("OK", 1017, 430);
 }
 
 void s2() {
@@ -110,12 +110,12 @@ void s2() {
   popMatrix();
   noFill();
   stroke(255, 0, 0);
-  strokeWeight(10);
-  ellipse(width/2, 300, 200, 280);
+  strokeWeight(7);
+  ellipse(width/2, 280, 100, 130);
   noStroke();
   fill(255, 0, 0);
-  for(int i = 600; i<840; i+=10){
-    ellipse (i, 280, 4, 4);  
+  for(int i = 650; i<800; i+=10){
+    ellipse (i, 270, 4, 4);  
   }
   
   // Camera sound
@@ -183,7 +183,7 @@ void timer2() {
     timerSc2 = millis();
     
     // Camera sound
-    if ((timerSc2Current == 5) && (!feedback2Playing)) {
+    if ((timerSc2Current == 8) && (!feedback2Playing)) {
       feedback.play();
       feedback2Playing = true;
     }
