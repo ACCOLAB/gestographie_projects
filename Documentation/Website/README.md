@@ -8,10 +8,16 @@ https://jekyllrb.com/docs/installation/ubuntu/
 
 ##Getting Started
 
-* You can first test Jekyll minima theme in the "template-test" folder with the command
+* Go into the forty-jekyll-theme-folder and first run (note that you may install some gems manually)
+
+```
+bundle install
+```
+
+* Then run 
 
 ```
 bundle exec jekyll serve
 ```
 
-* Then you can start working on "accolab-documentation" folder
+* You can finally working on the theme and modify it
